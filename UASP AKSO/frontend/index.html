@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Refochella Halizah</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #a6caee;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #8e5ec2;
+    }
+    header p {
+      font-size: 1rem;
+      color: #47007d;
+    }
+    main form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group label {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .form-group input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: #744cb0;
+    }
+    button {
+      padding: 12px;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #7a4caf;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #c386dd;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📚 Registrasi Mahasiswa</h1>
+      <p>Enter your details to join the university.</p>
+    </header>
+    <main>
+      <form action="/submit.php" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="nim">NIM</label>
+          <input type="text" id="nim" name="nim" placeholder="Enter your NIM" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+    <footer>
+      <p>© 2024 Refochella Halizah. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+version: "3.9"
+
+name : RefoHalizah
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+    volumes:
+      - ./backend:/var/www/html
+      - ./backend/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: refosasa
+      MYSQL_DATABASE: library
+      MYSQL_USER: refosasa
+      MYSQL_PASSWORD: refosasa
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    configs:
+      - source: my-custom-config
+        target: /etc/mysql/conf.d/custom.cnf
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: refosasa
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+configs:
+  my-custom-config:
+    file: ./mysql/custom.cnf
+
+networks:
+  app-network:
+    driver: bridge
